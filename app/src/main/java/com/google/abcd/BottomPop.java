@@ -27,8 +27,6 @@ public class BottomPop extends PopupWindow {
         this.setAnimationStyle(R.style.mypopwindow_anim_style);// 设置动画
         this.setBackgroundDrawable(new ColorDrawable(0x6ddd));// 设置背景透明
 
-        setAlpha(0.7f);
-
         setFocusable(true);
         setOutsideTouchable(true);
         setContentView(view);
@@ -62,6 +60,12 @@ public class BottomPop extends PopupWindow {
                 closePopupWindow(null);
             }
         });
+    }
+
+    @Override
+    public void showAtLocation(View parent, int gravity, int x, int y) {
+        super.showAtLocation(parent, gravity, x, y);
+        setAlpha(0.7f);
     }
 
     private void setAlpha(float v) {
