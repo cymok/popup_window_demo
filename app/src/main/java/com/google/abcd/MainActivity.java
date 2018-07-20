@@ -1,5 +1,6 @@
 package com.google.abcd;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -18,19 +19,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        mTvBtn.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*showAtLocation(parent, Gravity.BOTTOM, 0, 0);*/
-                mPop.showAtLocation(getWindow().getDecorView().getRootView(), Gravity.BOTTOM, 0, 0);
-                // TODO: 2018-07-20 可以根据anim的弹出/收回时间设置点击的按钮的隐藏/显示的动画
-                mTvBtn.setVisibility(View.GONE);//隐藏按钮
+                startActivity(new Intent(MainActivity.this, IncludeFragmentAty.class));
             }
         });
     }
 
     private void initView() {
-        mTvBtn = (TextView) findViewById(R.id.tv_btn);
+        mTvBtn = findViewById(R.id.tv_btn);
         mPop = new BottomPop(this, new BottomPop.UploadImageListener() {
             @Override
             public void item0() {
@@ -51,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
             public void onDismiss() {
                 // TODO: 2018-07-20 可以根据anim的弹出/收回时间设置点击的按钮的隐藏/显示的动画
                 mTvBtn.setVisibility(View.VISIBLE);//显示按钮
+            }
+        });
+        mTvBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*showAtLocation(parent, Gravity.BOTTOM, 0, 0);*/
+                mPop.showAtLocation(getWindow().getDecorView().getRootView(), Gravity.BOTTOM, 0, 0);
+                // TODO: 2018-07-20 可以根据anim的弹出/收回时间设置点击的按钮的隐藏/显示的动画
+                mTvBtn.setVisibility(View.GONE);//隐藏按钮
             }
         });
     }
